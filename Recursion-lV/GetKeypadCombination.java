@@ -1,57 +1,65 @@
 /*
 Problem Statement :
-1.You are given a string str. The string str will contains numbers only, 
-where each number stands for a key pressed on a mobile phone.
-2.The following list is the key to characters map :
-    0 -> .;
-    1 -> abc
-    2 -> def
-    3 -> ghi
-    4 -> jkl
-    5 -> mno
-    6 -> pqrs
-    7 -> tu
-    8 -> vwx
-    9 -> yz
-3. Complete the body of getKPC function - without changing signature - to get the list of all words that could be produced by the keys in str.
-Use sample input and output to take idea about output.
+Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
+A mapping of digits to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+    1 -> 
+    2 -> abc
+    3 -> def
+    4 -> ghi
+    5 -> jkl
+    6 -> mno
+    7 -> pqrs
+    8 -> tuv
+    9 -> wxyz
+ 
 
-Input Format :
-A string str.
+Example 1:
+Input: digits = "23"
+Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
 
-Output Format :
-Contents of the arraylist containing words as shown in sample output
+Example 2:
+Input: digits = ""
+Output: []
 
-Sample Input :
-78
+Example 3:
+Input: digits = "2"
+Output: ["a","b","c"]
 
-Sample Output :
-[tv, tw, tx, uv, uw, ux]
+
+Constraints:
+
+    0 <= digits.length <= 4
+    digits[i] is a digit in the range ['2', '9'].
+
+
  */
-import java.util.*;
-public class GetKeypadCombination {
 
-	public static void main(String[] args)throws Exception {
-		Scanner scn = new Scanner(System.in);
-		String str = scn.next();
-		ArrayList<String> words = getKPC(str);
-		System.out.println(words);
-	}
-	
-	static String[] codes = {".;","abc","def","ghi","jkl","mno","pqrs","tu","vwx","yz"};
-	public static ArrayList<String> getKPC(String str){
-		if(str.length()==0) {
-			ArrayList<String> bres = new ArrayList<>();
+class Solution {
+    
+    static String[] codes = {"","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+    
+    public List<String> letterCombinations(String digits) {
+        if(digits.length() == 0) {
+            List<String> ans = new ArrayList<>();
+            return ans;
+        }
+        List<String> ans = letterCombinationsHelper(digits);
+        return ans;
+    }
+    
+    public List<String> letterCombinationsHelper(String digits) {
+        if(digits.length()==0) {
+			List<String> bres = new ArrayList<>();
 			bres.add("");
 			return bres;
 		}
 		
-		char ch = str.charAt(0);
-		String ros = str.substring(1);
-		ArrayList<String> rres = getKPC(ros);
+		char ch = digits.charAt(0);
+		String ros = digits.substring(1);
+		List<String> rres = letterCombinationsHelper(ros);
 		
-		ArrayList<String> mres = new ArrayList<>();
-		String codeforch = codes[ch - '0'];
+		List<String> mres = new ArrayList<>();
+		String codeforch = codes[ch - '1'];
 		for(int i=0; i<codeforch.length(); i++) {
 			char chcodes = codeforch.charAt(i);
 			for(String rstr: rres) {
@@ -60,5 +68,5 @@ public class GetKeypadCombination {
 		}
 		
 		return mres;
-	}
+    }
 }
