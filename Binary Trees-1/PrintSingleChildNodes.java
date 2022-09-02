@@ -1,5 +1,6 @@
 /*
 Problem Statement: Print single child nodes.
+
  */
 
 import java.io.*;
@@ -102,7 +103,8 @@ public class PrintSingleChildNodes {
       printSingleChildNodes1(node.right,node);
     
   }
-
+  
+  // Driver code:
   public static void main(String[] args) throws Exception {
 	  BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	  int n = Integer.parseInt(br.readLine());
