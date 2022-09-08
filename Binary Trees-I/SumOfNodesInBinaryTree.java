@@ -66,7 +66,7 @@ public class SumOfNodesInBinaryTree {
 	}
 }
 
-//Node of Binary Tree
+
 
 class BinaryTreeNode<T>
 {
